@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0b0b0c;
+  --cream: #f7f3ec;
+  --gold: #c4a574;
+  --font-inter: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-fraunces: "Fraunces", Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--ink);
+  font-feature-settings: "ss01", "cv01", "cv11";
+}
+
+::selection {
+  background: rgba(196, 165, 116, 0.28);
+  color: var(--ink);
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-6 md:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-eyebrow text-gold-deep;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-6 bg-gold-deep/60;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 will-change-transform;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-cream-light hover:bg-ink-soft hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-ink hover:bg-gold-deep hover:text-cream-light hover:-translate-y-0.5 hover:shadow-gold;
+  }
+
+  .btn-ghost {
+    @apply btn border border-ink/15 bg-transparent text-ink hover:border-ink/40 hover:bg-ink/[0.03];
+  }
+
+  .btn-light {
+    @apply btn bg-cream-light text-ink hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  /* Editorial display heading */
+  .display {
+    @apply font-serif font-light leading-[1.04] tracking-[-0.01em];
+  }
+
+  .card {
+    @apply rounded-xl2 border border-line bg-white shadow-soft;
+  }
+
+  /* Subtle gold gradient text for accents */
+  .text-gradient-gold {
+    background: linear-gradient(100deg, #c4a574 0%, #a8865a 45%, #d9c29b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Faint grid / grain backdrop used behind dark sections */
+  .bg-grid {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-line;
+  }
+}
+
+/* Scroll-reveal: hidden until the .is-visible class is added by observer */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal.is-visible {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal.is-visible {
+    animation: none;
+  }
+}
