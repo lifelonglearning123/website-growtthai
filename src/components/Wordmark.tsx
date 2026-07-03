@@ -1,8 +1,11 @@
+import Image from "next/image";
 import { site } from "@/lib/site";
 
 /**
- * The Growtth wordmark. Lowercase serif logotype with a gold ".ai" accent —
- * modern for an AI brand while keeping Blink's warm, editorial luxury feel.
+ * The Growtth logo — the lowercase serif "growtth.ai" logotype with the gold
+ * sprout mark and gold ".ai" accent. Rendered from the brand PNG so the mark
+ * matches everywhere. `onDark` swaps in the cream variant for dark backgrounds
+ * (e.g. the footer); the gold sprout and ".ai" stay gold in both.
  */
 export default function Wordmark({
   className = "",
@@ -12,13 +15,13 @@ export default function Wordmark({
   onDark?: boolean;
 }) {
   return (
-    <span
-      className={`inline-flex items-baseline font-serif text-[1.6rem] font-normal lowercase tracking-[-0.01em] ${
-        onDark ? "text-cream-light" : "text-ink"
-      } ${className}`}
-    >
-      {site.brand.wordmark}
-      <span className="text-gold">{site.brand.tld}</span>
-    </span>
+    <Image
+      src={onDark ? "/growtth-logo-light.png" : "/growtth-logo.png"}
+      alt={`${site.brand.wordmark}${site.brand.tld}`}
+      width={650}
+      height={145}
+      priority={!onDark}
+      className={`h-9 w-auto ${className}`}
+    />
   );
 }
