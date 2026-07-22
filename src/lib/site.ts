@@ -11,10 +11,10 @@ export const site = {
     wordmark: "growtth",
     tld: ".ai",
     // Used in the <title>, footer legal line, etc.
-    legalName: "Growtth.ai Ltd",
+    legalName: "Shreeji Graphics Ltd",
     tagline: "AI that grows your beauty business.",
     domain: "growtth.ai",
-    email: "hello@growtth.ai",
+    email: "maanavajudia@gmail.com",
     phone: "+44 (0)141 000 0000",
     location: "Renfrew · United Kingdom",
   },
@@ -271,6 +271,26 @@ export const site = {
       body:
         "Thanks — we've received your details and a member of the Growtth team will be in touch shortly to arrange your demo.",
     },
+  },
+
+  /**
+   * Legal / policy details used by the Privacy and Terms pages and the footer
+   * legal line. Growtth is the trading brand; Shreeji Graphics Ltd is the
+   * company behind it and the data controller.
+   */
+  legal: {
+    company: "Shreeji Graphics Ltd",
+    tradingAs: "Growtth",
+    email: "maanavajudia@gmail.com",
+    address: "Renfrew, United Kingdom",
+    // Shown as "Last updated" on both policy pages.
+    updated: "22 July 2026",
+    // Courts / law that govern the Terms.
+    jurisdiction: "Scotland",
+    pages: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+    ],
   },
 
   footer: {

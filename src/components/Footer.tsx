@@ -1,9 +1,13 @@
 import { site } from "@/lib/site";
 import Wordmark from "./Wordmark";
 
-export default function Footer() {
-  const { footer, brand } = site;
+/** `linkBase` prefixes the in-page anchors so the footer also works from a
+ *  sub-page — see the same prop on `Nav`. */
+export default function Footer({ linkBase = "" }: { linkBase?: string }) {
+  const { footer, brand, legal } = site;
   const year = 2026;
+  const to = (href: string) =>
+    href.startsWith("#") ? `${linkBase}${href}` : href;
 
   return (
     <footer className="border-t border-white/10 bg-ink text-cream-light">
@@ -25,7 +29,7 @@ export default function Footer() {
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <a
-                      href={link.href}
+                      href={to(link.href)}
                       className="text-sm text-cream-light/70 transition-colors hover:text-gold"
                     >
                       {link.label}
@@ -53,23 +57,27 @@ export default function Footer() {
               </li>
               <li className="text-cream-light/50">{brand.location}</li>
             </ul>
-            <a href="#contact" className="btn-gold mt-6">
+            <a href={to("#contact")} className="btn-gold mt-6">
               Book a demo
             </a>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-cream-light/45 md:flex-row">
-          <p>
-            © {year} {brand.legalName}. All rights reserved.
+          <p className="text-center md:text-left">
+            © {year} {brand.legalName}. All rights reserved. {brand.name} is a
+            trading name of {legal.company}.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="transition-colors hover:text-cream-light/80">
-              Privacy
-            </a>
-            <a href="#" className="transition-colors hover:text-cream-light/80">
-              Terms
-            </a>
+            {legal.pages.map((page) => (
+              <a
+                key={page.href}
+                href={page.href}
+                className="transition-colors hover:text-cream-light/80"
+              >
+                {page.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>

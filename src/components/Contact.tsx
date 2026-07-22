@@ -167,8 +167,15 @@ export default function Contact() {
                 )}
 
                 <p className="text-center text-xs text-muted/80">
-                  By submitting you agree to be contacted by {brand.name}. We&apos;ll
-                  never share your details.
+                  By submitting you agree to be contacted by {brand.name} and to
+                  our{" "}
+                  <a
+                    href="/privacy"
+                    className="underline decoration-gold decoration-1 underline-offset-2 transition-colors hover:text-ink"
+                  >
+                    Privacy Policy
+                  </a>
+                  . We&apos;ll never share your details.
                 </p>
               </form>
             )}

@@ -5,9 +5,14 @@ import { site } from "@/lib/site";
 import Wordmark from "./Wordmark";
 import { IconArrow } from "./Icons";
 
-export default function Nav() {
+/**
+ * `linkBase` is prefixed to the in-page anchors so the nav also works from a
+ * sub-page (e.g. /privacy passes "/" to get "/#pricing" instead of "#pricing").
+ */
+export default function Nav({ linkBase = "" }: { linkBase?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const to = (hash: string) => `${linkBase}${hash}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -33,7 +38,7 @@ export default function Nav() {
       }`}
     >
       <nav className="container-x flex h-[72px] items-center justify-between">
-        <a href="#top" aria-label={site.brand.name} className="shrink-0">
+        <a href={linkBase || "#top"} aria-label={site.brand.name} className="shrink-0">
           <Wordmark />
         </a>
 
@@ -41,7 +46,7 @@ export default function Nav() {
           {site.nav.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={to(item.href)}
               className="text-sm text-ink/70 transition-colors hover:text-ink"
             >
               {item.label}
@@ -50,7 +55,7 @@ export default function Nav() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a href="#contact" className="btn-primary">
+          <a href={to("#contact")} className="btn-primary">
             Book a demo
             <IconArrow className="h-4 w-4" />
           </a>
@@ -94,7 +99,7 @@ export default function Nav() {
           {site.nav.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={to(item.href)}
               onClick={() => setOpen(false)}
               className="rounded-lg px-2 py-3 text-base text-ink/80 transition-colors hover:bg-cream"
             >
@@ -102,7 +107,7 @@ export default function Nav() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={to("#contact")}
             onClick={() => setOpen(false)}
             className="btn-primary mt-2 w-full"
           >
