@@ -14,7 +14,7 @@ export const site = {
     legalName: "Shreeji Graphics Ltd",
     tagline: "AI that grows your beauty business.",
     domain: "growtth.ai",
-    email: "maanavajudia@gmail.com",
+    email: "support@growtth.ai",
     phone: "+44 (0)141 000 0000",
     location: "Renfrew · United Kingdom",
   },
@@ -281,7 +281,7 @@ export const site = {
   legal: {
     company: "Shreeji Graphics Ltd",
     tradingAs: "Growtth",
-    email: "maanavajudia@gmail.com",
+    email: "support@growtth.ai",
     address: "Renfrew, United Kingdom",
     // Shown as "Last updated" on both policy pages.
     updated: "22 July 2026",
